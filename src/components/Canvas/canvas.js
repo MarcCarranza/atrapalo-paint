@@ -3,12 +3,27 @@ import { Stage, Layer, Text, Line } from 'react-konva';
 import classes from './canvas.module.css';
 
 class Canvas extends Component {
-  state = {
-    lines: [],
-    width: window.innerWidth * .7,
-    height: window.innerHeight * .8
-  };
+  constructor(props){
+    super(props);
+    this.state = {
+      lines: [],
+      width: window.innerWidth * .7,
+      height: window.innerHeight * .8
+    };
+  }
+
   
+  componentDidMount(){
+    window.addEventListener("resize", this.canvasResize());
+  }
+
+  canvasResize(){
+    this.setState({
+      width: window.innerWidth * .7,
+      height: window.innerHeight * .8
+    })
+  }
+
   handleMouseDown = () => {
     this._drawing = true;
     this.setState({
@@ -53,7 +68,7 @@ class Canvas extends Component {
           <Layer>
             <Text text="Just start drawing" />
             {this.state.lines.map((line, i) => (
-              <Line key={i} points={line} stroke="red" />
+              <Line key={i} points={line} stroke={this.props.stroke} />
             ))}
           </Layer>
         </Stage>

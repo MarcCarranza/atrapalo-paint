@@ -8,6 +8,7 @@ class App extends Component {
     super(props);
     this.state = {
       colors: [],
+      actualColor: 0,
       lineWidth: 1
     }
   }
@@ -28,11 +29,16 @@ class App extends Component {
     return colorArray;
   }
 
+  colorChangeHandler(colorCode){
+    console.log(colorCode);
+  }
+
+
   render() {
     return (
       <div className = {classes.App}>
-
-        <Canvas className={classes.Canvas} stroke={"hsl("+ this.state.colors[5] +", 75%, 50%)"}></Canvas>
+        <Colorbar colors={this.state.colors} clicked={this.colorChangeHandler}/>
+        <Canvas className={classes.Canvas} stroke={"hsl("+ this.state.actualColor +", 75%, 50%)"}/>
       </div>
     );
   }

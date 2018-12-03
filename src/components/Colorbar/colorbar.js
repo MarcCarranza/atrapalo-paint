@@ -7,9 +7,10 @@ class Colorbar extends PureComponent {
     }
     render() {
         return this.props.colors.map( (color, index) => {
-            return <Color 
-                position = {index}
-                colorCode = {color.colorCode}    
+            return <Color
+                click={() => this.props.clicked( color )}
+                key = {index}
+                colorCode = {color}    
             />
         } );
     }

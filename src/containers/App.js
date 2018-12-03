@@ -15,7 +15,7 @@ class App extends Component {
   
   componentWillMount(){
     this.setState({
-      colors: this.colorsGenerator()
+      colors: this.colorsGenerator(),
     });
   }
 
@@ -29,16 +29,22 @@ class App extends Component {
     return colorArray;
   }
 
-  colorChangeHandler(colorCode){
-    console.log(colorCode);
+  deletePersonHandler = ( colorCode ) => {
+    this.setState( { actualColor: colorCode } );
   }
 
 
   render() {
     return (
       <div className = {classes.App}>
-        <Colorbar colors={this.state.colors} clicked={this.colorChangeHandler}/>
-        <Canvas className={classes.Canvas} stroke={"hsl("+ this.state.actualColor +", 75%, 50%)"}/>
+        <Colorbar 
+          colors={this.state.colors} 
+          clicked={this.deletePersonHandler}
+        />
+        <Canvas 
+          className={classes.Canvas} 
+          stroke={"hsl("+ this.state.actualColor +", 75%, 50%)"}
+        />
       </div>
     );
   }

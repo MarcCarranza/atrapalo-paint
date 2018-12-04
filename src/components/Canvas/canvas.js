@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Stage, Layer, Text, Line } from 'react-konva';
+import { Stage, Layer, Line } from 'react-konva';
 import classes from './canvas.module.css';
 
 class Canvas extends Component {
@@ -70,9 +70,8 @@ class Canvas extends Component {
           }}
         >
           <Layer>
-            <Text text="Just start drawing" />
             {this.state.lines.map((line, i) => (
-              <Line key={i} points={line} stroke={this.state.lineColors[i]} strokeWidth={1} />
+              <Line key={i} points={line} stroke={this.state.lineColors[i]} strokeWidth={this.props.strokeWidth} />
             ))}
           </Layer>
         </Stage>

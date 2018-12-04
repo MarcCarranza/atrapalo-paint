@@ -1,18 +1,18 @@
 import React, { PureComponent } from 'react';
 import Auxiliar from '../../../hoc/auxiliar';
-import classes from './color.module.css';
+import classes from './width.module.css';
 
-class Color extends PureComponent {
+class Width extends PureComponent {
     render () {
         return(
         <Auxiliar>
             <button
                 onClick={this.props.click} 
                 className={classes.colorButton} 
-                style={{backgroundColor: "hsl("+ this.props.colorCode +", 75%, 50%)"}}></button>
+                style={{height: this.props.width * 2}}></button>
         </Auxiliar>
         )    
     }
 }
 
-export default Color;
+export default Width;

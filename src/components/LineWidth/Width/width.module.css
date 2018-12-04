@@ -1,4 +1,6 @@
 .colorButton{
     background-color: hsl(0, 0%, 20%);
     width: 50px;
+    margin: .5rem;
+    border: none
 }

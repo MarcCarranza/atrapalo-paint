@@ -3,6 +3,7 @@ import classes from "./App.module.css";
 import Colorbar from "../components/Colorbar/colorbar";
 import Canvas from "../components/Canvas/canvas";
 import WidthSelector from "../components/LineWidth/linewidth";
+import Toolbar from "../components/Toolbar/toolbar";
 
 class App extends Component {
   constructor(props) {
@@ -16,19 +17,15 @@ class App extends Component {
   }
 
   componentWillMount() {
-    this.setState({
-      colors: this.colorsGenerator()
-    });
-  }
-
-  colorsGenerator() {
     let colorArray = [];
     let i = 0;
     while (i < 360) {
       colorArray.push(i);
-      i += 30;
+      i += 20;
     }
-    return colorArray;
+    this.setState({
+      colors: colorArray
+    });
   }
 
   changeColorHandler = colorCode => {
@@ -39,9 +36,16 @@ class App extends Component {
     this.setState({ actualWidth: width })
   };
 
+  undoHandler = () =>{
+    console.log('a');
+  }
+
   render() {
     return (
       <div className={classes.App}>
+        <Toolbar
+          clicked={this.undoHandler}
+        />
         <Colorbar
           colors={this.state.colors}
           clicked={this.changeColorHandler}

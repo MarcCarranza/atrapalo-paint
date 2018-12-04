@@ -11,19 +11,26 @@ class Canvas extends Component {
       width: window.innerWidth * .7,
       height: window.innerHeight * .8
     };
-  }
+  };
 
-  
-  componentDidMount(){
+  componentDidMount() {
     window.addEventListener("resize", this.canvasResize());
-  }
+  };
 
-  canvasResize(){
+  canvasResize = () => {
     this.setState({
       width: window.innerWidth * .7,
       height: window.innerHeight * .8
     })
-  }
+  };
+
+  handleUndo = () => {
+
+  };
+
+  handleRedo = () => {
+
+  };
 
   handleMouseDown = () => {
     this.saveLinesConfig();
@@ -45,7 +52,7 @@ class Canvas extends Component {
     this.setState({
       lineConfig: lineArray
     })
-  }
+  };
 
   handleMouseMove = e => {
     if (!this._drawing) {

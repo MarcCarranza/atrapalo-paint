@@ -7,6 +7,7 @@ class Canvas extends Component {
     super(props);
     this.state = {
       lines: [],
+      lineColors: [],
       width: window.innerWidth * .7,
       height: window.innerHeight * .8
     };
@@ -25,9 +26,12 @@ class Canvas extends Component {
   }
 
   handleMouseDown = () => {
+    let color =  this.state.lineColors;
+    color.push(this.props.stroke);
     this._drawing = true;
     this.setState({
-      lines: [...this.state.lines, []]
+      lines: [...this.state.lines, []],
+      lineColors: color 
     });
   };
 
@@ -68,7 +72,7 @@ class Canvas extends Component {
           <Layer>
             <Text text="Just start drawing" />
             {this.state.lines.map((line, i) => (
-              <Line key={i} points={line} stroke={this.props.stroke} />
+              <Line key={i} points={line} stroke={this.state.lineColors[i]} strokeWidth={1} />
             ))}
           </Layer>
         </Stage>

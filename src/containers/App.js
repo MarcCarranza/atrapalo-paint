@@ -29,7 +29,7 @@ class App extends Component {
     return colorArray;
   }
 
-  deletePersonHandler = ( colorCode ) => {
+  changeColorHandler = ( colorCode ) => {
     this.setState( { actualColor: colorCode } );
   }
 
@@ -39,7 +39,7 @@ class App extends Component {
       <div className = {classes.App}>
         <Colorbar 
           colors={this.state.colors} 
-          clicked={this.deletePersonHandler}
+          clicked={this.changeColorHandler}
         />
         <Canvas 
           className={classes.Canvas} 

@@ -52,7 +52,7 @@ class App extends Component {
         />
         <Canvas
           className={classes.Canvas}
-          stroke={"hsl(" + this.state.actualColor + ", 75%, 50%)"}
+          strokeColor={"hsl(" + this.state.actualColor + ", 75%, 50%)"}
           strokeWidth={this.state.actualWidth}
         />
       </div>

@@ -12,7 +12,8 @@ class App extends Component {
       colors: [],
       actualColor: 0,
       lineWidths: [2, 3, 4, 5],
-      actualWidth: 2
+      actualWidth: 2,
+      undo: false
     };
   }
 
@@ -37,7 +38,9 @@ class App extends Component {
   };
 
   undoHandler = () =>{
-    console.log('a');
+    this.setState({
+      undo: true
+    })
   }
 
   render() {
@@ -58,6 +61,7 @@ class App extends Component {
           className={classes.Canvas}
           strokeColor={"hsl(" + this.state.actualColor + ", 75%, 50%)"}
           strokeWidth={this.state.actualWidth}
+          undo={this.state.undo}
         />
       </div>
     );

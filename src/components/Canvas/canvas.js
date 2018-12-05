@@ -7,7 +7,9 @@ class Canvas extends Component {
     super(props);
     this.state = {
       lines: [],
+      savedLines: [],
       linesConfig: [],
+      savedLinesConfig: [],
       width: window.innerWidth * 0.7,
       height: window.innerHeight * 0.8
     };
@@ -17,6 +19,7 @@ class Canvas extends Component {
     window.addEventListener("resize", this.canvasResize());
   }
 
+  // Comprueba si ha cambiado el estado de undo/redo y lo actualiza acorde
   componentDidUpdate(prevProps) {
     if (prevProps.undo < this.props.undo) {
       this.handleUndo();
@@ -25,6 +28,7 @@ class Canvas extends Component {
     }
   }
 
+  // Función para que el canvas sea responsive
   canvasResize = () => {
     this.setState({
       width: window.innerWidth * 0.7,
@@ -32,15 +36,70 @@ class Canvas extends Component {
     });
   };
 
+  // Función para organizar las acciones de deshacer
   handleUndo = () => {
+    this.saveOldLines();
+    this.saveOldLinesConfig();
+  };
+
+  // Función que guarda las lineas en otro array cuando llama a deshacer
+  saveOldLines = () => {
     let newLines = this.state.lines;
+    let lineToSave = newLines[newLines.length - 1];
+    let oldLines = this.state.savedLines;
+    oldLines.push(lineToSave);
     newLines.splice(newLines.length - 1, 1);
     this.setState({
-      lines: newLines
+      lines: newLines,
+      savedLines: oldLines
     });
   };
 
-  handleRedo = () => {};
+  // Función que guarda la configuración de las lineas cuando se llama a deshacer
+  saveOldLinesConfig = () => {
+    let newLinesConfig = this.state.linesConfig;
+    let lineConfigToSave = newLinesConfig[newLinesConfig.length -1];
+    let oldLinesConfig = this.state.savedLinesConfig;
+    oldLinesConfig.push(lineConfigToSave);
+    newLinesConfig.splice(newLinesConfig.length - 1, 1);
+    this.setState({
+      linesConfig: newLinesConfig,
+      savedLinesConfig: oldLinesConfig
+    })
+  }
+
+  handleRedo = () => {
+    this.restoreOldLines();
+    this.restoreOldLinesConfig();
+  };
+
+  restoreOldLines = () => {
+    if (this.props.undo >= 0) {
+      let newLines = this.state.lines;
+      let redoLine = this.state.savedLines[this.state.savedLines.length - 1];
+      let oldLines = this.state.savedLines;
+      newLines.push(redoLine);
+      oldLines.splice(oldLines.length - 1, 1);
+      this.setState({
+        lines: newLines,
+        savedLines: oldLines
+      });
+    }
+  }
+
+  restoreOldLinesConfig = () => {
+    if (this.props.undo >= 0) {
+      let newLinesConfig = this.state.linesConfig;
+      let redoLineConfig = this.state.savedLinesConfig[this.state.savedLinesConfig.length - 1];
+      let oldLinesConfig = this.state.savedLinesConfig;
+      newLinesConfig.push(redoLineConfig);
+      oldLinesConfig.splice(oldLinesConfig.length - 1, 1);
+      this.setState({
+        linesConfig: newLinesConfig,
+        savedLinesConfig: oldLinesConfig
+      });
+    }
+  }
 
   handleMouseDown = () => {
     this.saveLinesConfig();
@@ -65,6 +124,7 @@ class Canvas extends Component {
   };
 
   handleMouseMove = e => {
+    this.enableUndoRedo();
     if (!this._drawing) {
       return;
     }
@@ -83,6 +143,22 @@ class Canvas extends Component {
 
   handleMouseUp = () => {
     this._drawing = false;
+  };
+
+  enableUndoRedo = () => {
+    let undo, redo;
+    if (this.state.lines.length === 0) {
+      undo = false;
+    } else if (this.state.lines.length > 0) {
+      undo = true;
+    }
+    if (this.state.savedLines.length === 0) {
+      redo = false;
+    } else if (this.state.savedLines.length > 0) {
+      redo = true;
+    }
+
+    this.props.click(undo, redo);
   };
 
   render() {

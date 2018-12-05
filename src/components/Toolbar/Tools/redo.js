@@ -7,14 +7,20 @@ class Undo extends Component {
             buttonText: "Rehacer"
         }
     }
-    render () {
-        return(
-            <button
+    render() {
+        if(this.props.enabled){
+            return <button 
                 onClick={this.props.click}>
                 {this.state.buttonText}
             </button>
-        )    
-    }
+        }else{
+            return <button 
+                onClick={this.props.click}
+                disabled={true}>
+                {this.state.buttonText}
+            </button>
+        }
+      }
 }
 
 export default Undo;

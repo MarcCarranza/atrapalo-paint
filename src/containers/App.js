@@ -13,7 +13,9 @@ class App extends Component {
       actualColor: 0,
       lineWidths: [2, 3, 4, 5],
       actualWidth: 2,
-      undo: 0
+      undo: 0,
+      undoEnabled: false,
+      redoEnabled: false
     };
   }
 
@@ -53,6 +55,13 @@ class App extends Component {
     })
   }
 
+  undoEnabledHandler = (undoEnabled, redoEnabled) => {
+    this.setState({
+      undoEnabled: undoEnabled,
+      redoEnabled: redoEnabled
+    })
+  }
+
   render() {
     return (
       <div className={classes.App}>
@@ -63,6 +72,8 @@ class App extends Component {
               redo: this.redoHandler
             }
           }
+          undoEnabled={this.state.undoEnabled}
+          redoEnabled={this.state.redoEnabled}
         />
         <Colorbar
           colors={this.state.colors}
@@ -77,6 +88,7 @@ class App extends Component {
           strokeColor={"hsl(" + this.state.actualColor + ", 75%, 50%)"}
           strokeWidth={this.state.actualWidth}
           undo={this.state.undo}
+          click={this.undoEnabledHandler}
         />
       </div>
     );

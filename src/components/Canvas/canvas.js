@@ -1,46 +1,46 @@
-import React, { Component } from 'react';
-import { Stage, Layer, Line } from 'react-konva';
-import classes from './canvas.module.css';
+import React, { Component } from "react";
+import { Stage, Layer, Line } from "react-konva";
+import classes from "./canvas.module.css";
 
 class Canvas extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       lines: [],
       linesConfig: [],
-      width: window.innerWidth * .7,
-      height: window.innerHeight * .8
+      width: window.innerWidth * 0.7,
+      height: window.innerHeight * 0.8
     };
-  };
+  }
 
   componentDidMount() {
     window.addEventListener("resize", this.canvasResize());
-  };
+  }
 
-  componentDidUpdate(prevProps){
-    if(prevProps.undo !== this.props.undo){
+  componentDidUpdate(prevProps) {
+    if (prevProps.undo < this.props.undo) {
       this.handleUndo();
+    } else if (prevProps.undo > this.props.undo) {
+      this.handleRedo();
     }
   }
 
   canvasResize = () => {
     this.setState({
-      width: window.innerWidth * .7,
-      height: window.innerHeight * .8
-    })
+      width: window.innerWidth * 0.7,
+      height: window.innerHeight * 0.8
+    });
   };
 
   handleUndo = () => {
-    let newLines = this.state.lines
+    let newLines = this.state.lines;
     newLines.splice(newLines.length - 1, 1);
     this.setState({
       lines: newLines
-    })
+    });
   };
 
-  handleRedo = () => {
-
-  };
+  handleRedo = () => {};
 
   handleMouseDown = () => {
     this.saveLinesConfig();
@@ -51,17 +51,17 @@ class Canvas extends Component {
   };
 
   saveLinesConfig = () => {
-    let lineArray =  this.state.linesConfig;
+    let lineArray = this.state.linesConfig;
     let lineColor = this.props.strokeColor;
     let lineWidth = this.props.strokeWidth;
     let line = {
       lineColor,
       lineWidth
-    }
+    };
     lineArray.push(line);
     this.setState({
       lineConfig: lineArray
-    })
+    });
   };
 
   handleMouseMove = e => {
@@ -100,7 +100,12 @@ class Canvas extends Component {
         >
           <Layer>
             {this.state.lines.map((line, i) => (
-              <Line key={i} points={line} stroke={this.state.linesConfig[i].lineColor} strokeWidth={this.state.linesConfig[i].lineWidth} />
+              <Line
+                key={i}
+                points={line}
+                stroke={this.state.linesConfig[i].lineColor}
+                strokeWidth={this.state.linesConfig[i].lineWidth}
+              />
             ))}
           </Layer>
         </Stage>

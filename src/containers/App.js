@@ -45,11 +45,24 @@ class App extends Component {
     })
   }
 
+  redoHandler = () => {
+    let updatedUndo = this.state.undo;
+    updatedUndo--;
+    this.setState({
+      undo: updatedUndo
+    })
+  }
+
   render() {
     return (
       <div className={classes.App}>
         <Toolbar
-          clicked={this.undoHandler}
+          clicked={
+            { 
+              undo: this.undoHandler, 
+              redo: this.redoHandler
+            }
+          }
         />
         <Colorbar
           colors={this.state.colors}

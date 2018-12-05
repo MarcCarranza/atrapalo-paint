@@ -1,25 +1,16 @@
-import React, { Component } from 'react';
-import Tool from './Tool/tool';
+import React, { PureComponent } from "react";
+import Undo from "./Tools/undo";
+import Redo from "./Tools/redo";
 
-class Toolbar extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            buttons: [
-                "Deshacer",
-                "Rehacer"
-            ] 
-        }
-    }
-    render() {
-        return this.state.buttons.map( (button, index) => {
-            return <Tool
-                key={index}
-                click={() => this.props.clicked()}
-                buttonText={button}
-            />
-        } );
-    }
+class Toolbar extends PureComponent {
+  render() {
+    return (
+      <>
+        <Undo click={() => this.props.clicked.undo()} />
+        <Redo click={() => this.props.clicked.redo()} />
+      </>
+    );
+  }
 }
 
 export default Toolbar;

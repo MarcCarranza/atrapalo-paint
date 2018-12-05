@@ -61,7 +61,7 @@ class App extends Component {
     })
   }
 
-  // Handler para actualizars
+  // Handler para activar/desactivar los botones de hacer y deshacer
   undoEnabledHandler = (undoEnabled, redoEnabled) => {
     this.setState({
       undoEnabled: undoEnabled,

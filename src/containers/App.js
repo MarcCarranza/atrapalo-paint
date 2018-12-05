@@ -13,7 +13,7 @@ class App extends Component {
       actualColor: 0,
       lineWidths: [2, 3, 4, 5],
       actualWidth: 2,
-      undo: false
+      undo: 0
     };
   }
 
@@ -38,8 +38,10 @@ class App extends Component {
   };
 
   undoHandler = () =>{
+    let updatedUndo = this.state.undo;
+    updatedUndo++;
     this.setState({
-      undo: true
+      undo: updatedUndo
     })
   }
 

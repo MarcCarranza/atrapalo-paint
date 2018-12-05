@@ -17,6 +17,12 @@ class Canvas extends Component {
     window.addEventListener("resize", this.canvasResize());
   };
 
+  componentDidUpdate(prevProps){
+    if(prevProps.undo !== this.props.undo){
+      this.handleUndo();
+    }
+  }
+
   canvasResize = () => {
     this.setState({
       width: window.innerWidth * .7,
@@ -25,7 +31,11 @@ class Canvas extends Component {
   };
 
   handleUndo = () => {
-
+    let newLines = this.state.lines
+    newLines.splice(newLines.length - 1, 1);
+    this.setState({
+      lines: newLines
+    })
   };
 
   handleRedo = () => {

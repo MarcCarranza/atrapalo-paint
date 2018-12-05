@@ -7,7 +7,7 @@ class Tool extends PureComponent {
         <Auxiliar>
             <button
                 onClick={this.props.click}>
-                Deshacer
+                {this.props.buttonText}
             </button>
         </Auxiliar>
         )    

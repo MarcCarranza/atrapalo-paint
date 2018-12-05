@@ -13,7 +13,8 @@ class App extends Component {
       actualColor: 0,           // Color actual del dibujo
       lineWidths: [2, 3, 4, 5], // Grosores disponibles
       actualWidth: 2,     // Grosor actual del dibujo
-      undo: 0,            // Variable para que detecte deshacer/rehacer (le va sumando o restando, esto lo he de cambiar, si no lo hago pido perdón)
+      undo: 0,            // Variable para que detecte deshacer/rehacer (le va sumando o restando, esto lo he de cambiar, si no lo hago pido perdón)*
+                          // * Está funcionando bien no sé qué hacer
       undoEnabled: false, // Variable para que deshacer se active/desactive
       redoEnabled: false  // Variable para que rehacer se active/desactive
     };

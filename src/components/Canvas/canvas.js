@@ -122,9 +122,14 @@ class Canvas extends Component {
     }
   }
 
-  // Función que se encarga de detectar si el canvas está siendo presionado y hacer un spread para mostrar las lineas
+  // Función que se encarga de detectar si el canvas está siendo presionado y hacer un spread de las lineas
   handleMouseDown = () => {
-    this.saveLinesConfig();
+    // Si hay alguna linea para rehacer y se pinta de nuevo, purge it
+    if(this.state.savedLinesConfig.length > 0){
+      this.purgeSavedLines();
+      this.purgeSavedLinesConfig();
+    }
+      this.saveLinesConfig();
     this._drawing = true;
     this.setState({
       lines: [...this.state.lines, []]
@@ -169,6 +174,21 @@ class Canvas extends Component {
       lineConfig: lineArray
     });
   };
+
+  // Borra los datos del array de lineas guardadas al deshacer
+  purgeSavedLines = () => {
+    this.setState({
+      savedLines: []
+    })
+  }
+
+  // Borra los datos del array de configuracion de lineas guardadas al deshacer
+  purgeSavedLinesConfig = () => {
+    this.setState({
+      savedLinesConfig: []
+    })
+  }
+  
 
   render() {
     return (

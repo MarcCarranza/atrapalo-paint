@@ -6,20 +6,21 @@ class Canvas extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      lines: [],
-      savedLines: [],
-      linesConfig: [],
-      savedLinesConfig: [],
-      width: window.innerWidth * 0.7,
-      height: window.innerHeight * 0.8
+      lines: [],        // Array donde guardar las lineas
+      savedLines: [],   // Array donde guardar las lineas cuando se llama a deshacer
+      linesConfig: [],  // Array donde guardar la configuracion de las lineas
+      savedLinesConfig: [],               // Array donde guardar la configuracion de las lineas al deshacer
+      width: window.innerWidth * 0.7,     // Variable para calcular el ancho del canvas
+      height: window.innerHeight * 0.8    // Variable para calcular la altura del canvas
     };
   }
 
+  // Añade un event listener que llama a canvasResize()
   componentDidMount() {
     window.addEventListener("resize", this.canvasResize());
   }
 
-  // Comprueba si ha cambiado el estado de undo/redo y lo actualiza acorde
+  // Comprueba si ha cambiado el estado de undo/redo y lo actualiza acorde a la acción (esto debe irse)
   componentDidUpdate(prevProps) {
     if (prevProps.undo < this.props.undo) {
       this.handleUndo();
@@ -34,6 +35,23 @@ class Canvas extends Component {
       width: window.innerWidth * 0.7,
       height: window.innerHeight * 0.8
     });
+  };
+
+  // Función que activa o desactiva los botones en función de su disponibilidad
+  enableUndoRedo = () => {
+    let undo, redo;
+    if (this.state.lines.length === 0) {
+      undo = false;
+    } else if (this.state.lines.length > 0) {
+      undo = true;
+    }
+    if (this.state.savedLines.length === 0) {
+      redo = false;
+    } else if (this.state.savedLines.length > 0) {
+      redo = true;
+    }
+
+    this.props.click(undo, redo);
   };
 
   // Función para organizar las acciones de deshacer
@@ -68,11 +86,13 @@ class Canvas extends Component {
     })
   }
 
+  // Función para organizar las acciones de rehacer (por aquí he perdido la esperanza)
   handleRedo = () => {
     this.restoreOldLines();
     this.restoreOldLinesConfig();
   };
 
+  // Función que restora las lineas cuando se llama a rehacer
   restoreOldLines = () => {
     if (this.props.undo >= 0) {
       let newLines = this.state.lines;
@@ -87,6 +107,7 @@ class Canvas extends Component {
     }
   }
 
+  // Función que restora la configuración de las lineas cuando se llama a rehacer
   restoreOldLinesConfig = () => {
     if (this.props.undo >= 0) {
       let newLinesConfig = this.state.linesConfig;
@@ -101,6 +122,7 @@ class Canvas extends Component {
     }
   }
 
+  // Función que se encarga de detectar si el canvas está siendo presionado y hacer un spread para mostrar las lineas
   handleMouseDown = () => {
     this.saveLinesConfig();
     this._drawing = true;
@@ -109,20 +131,7 @@ class Canvas extends Component {
     });
   };
 
-  saveLinesConfig = () => {
-    let lineArray = this.state.linesConfig;
-    let lineColor = this.props.strokeColor;
-    let lineWidth = this.props.strokeWidth;
-    let line = {
-      lineColor,
-      lineWidth
-    };
-    lineArray.push(line);
-    this.setState({
-      lineConfig: lineArray
-    });
-  };
-
+  // Función que se encarga de detectar el movimiento del ratón y guarda las lineas
   handleMouseMove = e => {
     this.enableUndoRedo();
     if (!this._drawing) {
@@ -141,24 +150,24 @@ class Canvas extends Component {
     });
   };
 
+  // Función que detecta cuando se levanta el ratón
   handleMouseUp = () => {
     this._drawing = false;
   };
 
-  enableUndoRedo = () => {
-    let undo, redo;
-    if (this.state.lines.length === 0) {
-      undo = false;
-    } else if (this.state.lines.length > 0) {
-      undo = true;
-    }
-    if (this.state.savedLines.length === 0) {
-      redo = false;
-    } else if (this.state.savedLines.length > 0) {
-      redo = true;
-    }
-
-    this.props.click(undo, redo);
+  // Guarda los datos (color, width) de las lineas en un array aparte
+  saveLinesConfig = () => {
+    let lineArray = this.state.linesConfig;
+    let lineColor = this.props.strokeColor;
+    let lineWidth = this.props.strokeWidth;
+    let line = {
+      lineColor,
+      lineWidth
+    };
+    lineArray.push(line);
+    this.setState({
+      lineConfig: lineArray
+    });
   };
 
   render() {

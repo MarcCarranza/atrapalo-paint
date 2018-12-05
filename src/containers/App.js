@@ -9,16 +9,17 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      colors: [],
-      actualColor: 0,
-      lineWidths: [2, 3, 4, 5],
-      actualWidth: 2,
-      undo: 0,
-      undoEnabled: false,
-      redoEnabled: false
+      colors: [],               // Array de colores disponibles (se rellenan en componentWillMount())
+      actualColor: 0,           // Color actual del dibujo
+      lineWidths: [2, 3, 4, 5], // Grosores disponibles
+      actualWidth: 2,     // Grosor actual del dibujo
+      undo: 0,            // Variable para que detecte deshacer/rehacer (le va sumando o restando, esto lo he de cambiar, si no lo hago pido perdón)
+      undoEnabled: false, // Variable para que deshacer se active/desactive
+      redoEnabled: false  // Variable para que rehacer se active/desactive
     };
   }
 
+  // Función para crear una paleta de colores más que básica
   componentWillMount() {
     let colorArray = [];
     let i = 0;
@@ -31,14 +32,17 @@ class App extends Component {
     });
   }
 
+  // Handler que se encarga de actualizar el color del dibujo
   changeColorHandler = colorCode => {
     this.setState({ actualColor: colorCode });
   };
 
+  // Handler que se encarga de actualizar la amplitud del dibujo
   changeWidthHandler = width => {
     this.setState({ actualWidth: width })
   };
 
+  // Handler para actualizar undo y que canvas lo detecte (como comentado anteriormente, esto es una chapuza y se ha de cambiar)
   undoHandler = () =>{
     let updatedUndo = this.state.undo;
     updatedUndo++;
@@ -47,6 +51,7 @@ class App extends Component {
     })
   }
 
+  // Handler para actualizar undo y que canvas lo detecte (como comentado anteriormente, esto es una chapuza y se ha de cambiar)
   redoHandler = () => {
     let updatedUndo = this.state.undo;
     updatedUndo--;
@@ -55,6 +60,7 @@ class App extends Component {
     })
   }
 
+  // Handler para actualizars
   undoEnabledHandler = (undoEnabled, redoEnabled) => {
     this.setState({
       undoEnabled: undoEnabled,

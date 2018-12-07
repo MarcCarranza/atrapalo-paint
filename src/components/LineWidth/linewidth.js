@@ -11,8 +11,10 @@ class lineWidth extends Component {
             <Width
               key={index}
               width={width}
-              click={() => this.props.clicked(width)}
-            />
+              click={() => this.props.clicked(width)}>
+            </Width>
+
+
           );
         })}
       </div>

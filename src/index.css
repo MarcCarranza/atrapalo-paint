@@ -1,11 +1,10 @@
 :root{
   --detail: hsl(200, 50%, 45%);
   --background: hsl(200, 30%, 97%);
-  --borders: hsl(200, 70%, 90%);
   --letters: hsl(200, 0%, 100%);
   --disabled: hsl(200, 10%, 55%);
   --shadow: hsl(200, 100%, 17.5%);
-  --color-border: hsl(200, 10%, 87.5%);
+  --color-border: hsla(200, 10%, 87.5%, 0.85);
 }
 
 html {

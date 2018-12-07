@@ -10,8 +10,8 @@ class Canvas extends Component {
       savedLines: [], // Array donde guardar las lineas cuando se llama a deshacer
       linesConfig: [], // Array donde guardar la configuracion de las lineas
       savedLinesConfig: [], // Array donde guardar la configuracion de las lineas al deshacer
-      width: window.innerWidth * 0.85, // Variable para calcular el ancho del canvas
-      height: window.innerHeight * 0.9 // Variable para calcular la altura del canvas
+      width: window.innerWidth * 0.8, // Variable para calcular el ancho del canvas
+      height: window.innerHeight * 0.85 // Variable para calcular la altura del canvas
     };
   }
 
@@ -36,8 +36,8 @@ class Canvas extends Component {
   // Función para que el canvas sea responsive
   canvasResize = () => {
     this.setState({
-      width: window.innerWidth * 0.85,
-      height: window.innerHeight * 0.9
+      width: window.innerWidth * 0.8,
+      height: window.innerHeight * 0.85
     });
   };
 
@@ -196,8 +196,9 @@ class Canvas extends Component {
 
   render() {
     return (
-      <div className={classes.Canvas}>
+      <div className={classes.CanvasWrapper}>
         <Stage
+          className={classes.Canvas}
           width={this.state.width}
           height={this.state.height}
           onContentMousedown={this.handleMouseDown}

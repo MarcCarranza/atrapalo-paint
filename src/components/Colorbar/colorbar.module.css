@@ -2,4 +2,6 @@
     grid-area: colorbar;
     display: flex;
     flex-direction: column;
+    padding-left: 2.5vw;
+    flex-wrap: wrap;
 }

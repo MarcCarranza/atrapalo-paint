@@ -1,6 +1,12 @@
-.colorButton{
+.widthButton{
     background-color: hsl(0, 0%, 20%);
-    width: 50px;
-    margin: .5rem;
+    width: 100%;
+    margin: .5rem 0rem;
     border: none;
+    cursor: pointer;
+    transition: all .3s;
+}
+
+.widthButton:hover{
+    background-color: var(--detail);
 }

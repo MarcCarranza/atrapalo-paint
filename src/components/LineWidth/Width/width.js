@@ -8,7 +8,7 @@ class Width extends PureComponent {
         <Auxiliar>
             <button
                 onClick={this.props.click} 
-                className={classes.colorButton} 
+                className={classes.widthButton} 
                 style={{height: this.props.width * 2}}></button>
         </Auxiliar>
         )    

@@ -1,4 +1,13 @@
-.Canvas{
+.CanvasWrapper{
     grid-area: canvas;
-    border: 1px solid grey;
+    display: flex;
+    justify-content: center;
 }
+
+.Canvas{
+    border: 1px solid var(--borders);
+    width: 80vw;
+    height: 85vh;
+    background-color: white;
+}
+

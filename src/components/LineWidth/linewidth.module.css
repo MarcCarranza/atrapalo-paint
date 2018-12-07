@@ -1,0 +1,5 @@
+.LineSelector {
+    grid-area: lineselector;
+    display: flex;
+    flex-direction: column;
+}

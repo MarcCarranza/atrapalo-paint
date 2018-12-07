@@ -5,7 +5,7 @@ import classes from "./linewidth.module.css";
 class lineWidth extends Component {
   render() {
     return (
-      <div className="lineWidth">
+      <div className={classes.LineSelector}>
         {this.props.lineWidths.map((width, index) => {
           return (
             <Width

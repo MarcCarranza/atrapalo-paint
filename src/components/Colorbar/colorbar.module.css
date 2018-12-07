@@ -1,0 +1,5 @@
+.Colorbar{
+    grid-area: colorbar;
+    display: flex;
+    flex-direction: column;
+}

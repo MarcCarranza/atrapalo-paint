@@ -1,6 +1,4 @@
 .Canvas{
-    width: 70vw;
-    height: 80vh;
-    border: 1px solid #777;
-    background-color: white;
+    grid-area: canvas;
+    border: 1px solid grey;
 }

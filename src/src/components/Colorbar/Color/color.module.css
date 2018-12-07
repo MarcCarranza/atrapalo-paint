@@ -1,0 +1,13 @@
+.colorButton{
+    width: 3rem;
+    height: 3rem;
+    border: none;
+    margin: 1rem 0rem;
+    transition: all .5s;
+    cursor: pointer;
+    border: 1px solid var(--color-border);
+}
+
+.colorButton:hover{
+    transform: translateX(5px);
+}

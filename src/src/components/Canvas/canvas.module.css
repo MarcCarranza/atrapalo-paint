@@ -1,0 +1,14 @@
+.CanvasWrapper{
+    grid-area: canvas;
+    display: flex;
+    justify-content: center;
+}
+
+.Canvas{
+    border: 1px solid var(--color-border);
+    width: 80vw;
+    height: 85vh;
+    background-color: white;
+    overflow: auto;
+}
+

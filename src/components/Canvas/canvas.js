@@ -6,12 +6,12 @@ class Canvas extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      lines: [],        // Array donde guardar las lineas
-      savedLines: [],   // Array donde guardar las lineas cuando se llama a deshacer
-      linesConfig: [],  // Array donde guardar la configuracion de las lineas
-      savedLinesConfig: [],               // Array donde guardar la configuracion de las lineas al deshacer
-      width: window.innerWidth * 0.7,     // Variable para calcular el ancho del canvas
-      height: window.innerHeight * 0.8    // Variable para calcular la altura del canvas
+      lines: [], // Array donde guardar las lineas
+      savedLines: [], // Array donde guardar las lineas cuando se llama a deshacer
+      linesConfig: [], // Array donde guardar la configuracion de las lineas
+      savedLinesConfig: [], // Array donde guardar la configuracion de las lineas al deshacer
+      width: window.innerWidth * 0.7, // Variable para calcular el ancho del canvas
+      height: window.innerHeight * 0.8 // Variable para calcular la altura del canvas
     };
   }
 
@@ -21,7 +21,11 @@ class Canvas extends Component {
   }
 
   // Comprueba si ha cambiado el estado de undo/redo y lo actualiza acorde a la acción (esto debe irse)
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState !== this.state) {
+      this.enableUndoRedo();
+    }
+
     if (prevProps.undo < this.props.undo) {
       this.handleUndo();
     } else if (prevProps.undo > this.props.undo) {
@@ -76,15 +80,15 @@ class Canvas extends Component {
   // Función que guarda la configuración de las lineas cuando se llama a deshacer
   saveOldLinesConfig = () => {
     let newLinesConfig = this.state.linesConfig;
-    let lineConfigToSave = newLinesConfig[newLinesConfig.length -1];
+    let lineConfigToSave = newLinesConfig[newLinesConfig.length - 1];
     let oldLinesConfig = this.state.savedLinesConfig;
     oldLinesConfig.push(lineConfigToSave);
     newLinesConfig.splice(newLinesConfig.length - 1, 1);
     this.setState({
       linesConfig: newLinesConfig,
       savedLinesConfig: oldLinesConfig
-    })
-  }
+    });
+  };
 
   // Función para organizar las acciones de rehacer (por aquí he perdido la esperanza)
   handleRedo = () => {
@@ -105,13 +109,15 @@ class Canvas extends Component {
         savedLines: oldLines
       });
     }
-  }
+  };
 
   // Función que restora la configuración de las lineas cuando se llama a rehacer
   restoreOldLinesConfig = () => {
     if (this.props.undo >= 0) {
       let newLinesConfig = this.state.linesConfig;
-      let redoLineConfig = this.state.savedLinesConfig[this.state.savedLinesConfig.length - 1];
+      let redoLineConfig = this.state.savedLinesConfig[
+        this.state.savedLinesConfig.length - 1
+      ];
       let oldLinesConfig = this.state.savedLinesConfig;
       newLinesConfig.push(redoLineConfig);
       oldLinesConfig.splice(oldLinesConfig.length - 1, 1);
@@ -120,16 +126,16 @@ class Canvas extends Component {
         savedLinesConfig: oldLinesConfig
       });
     }
-  }
+  };
 
   // Función que se encarga de detectar si el canvas está siendo presionado y hacer un spread de las lineas
   handleMouseDown = () => {
     // Si hay alguna linea para rehacer y se pinta de nuevo, purge it
-    if(this.state.savedLinesConfig.length > 0){
+    if (this.state.savedLinesConfig.length > 0) {
       this.purgeSavedLines();
       this.purgeSavedLinesConfig();
     }
-      this.saveLinesConfig();
+    this.saveLinesConfig();
     this._drawing = true;
     this.setState({
       lines: [...this.state.lines, []]
@@ -138,7 +144,6 @@ class Canvas extends Component {
 
   // Función que se encarga de detectar el movimiento del ratón y guarda las lineas
   handleMouseMove = e => {
-    this.enableUndoRedo();
     if (!this._drawing) {
       return;
     }
@@ -179,16 +184,15 @@ class Canvas extends Component {
   purgeSavedLines = () => {
     this.setState({
       savedLines: []
-    })
-  }
+    });
+  };
 
   // Borra los datos del array de configuracion de lineas guardadas al deshacer
   purgeSavedLinesConfig = () => {
     this.setState({
       savedLinesConfig: []
-    })
-  }
-  
+    });
+  };
 
   render() {
     return (

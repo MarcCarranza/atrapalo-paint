@@ -9,9 +9,9 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      colors: [],               // Array de colores disponibles (se rellenan en componentWillMount())
-      actualColor: 0,           // Color actual del dibujo
-      lineWidths: [2, 3, 4, 5], // Grosores disponibles
+      colors: [],                       // Array de colores disponibles (se rellenan en componentWillMount())
+      actualColor: "hsl(0, 75%, 0%)",  // Color actual del dibujo
+      lineWidths: [2, 3, 4, 5],         // Grosores disponibles
       actualWidth: 2,     // Grosor actual del dibujo
       undo: 0,            // Variable para que detecte deshacer/rehacer (le va sumando o restando, esto lo he de cambiar, si no lo hago pido perdón)*
                           // * Está funcionando bien no sé qué hacer
@@ -23,9 +23,16 @@ class App extends Component {
   // Función para crear una paleta de colores más que básica
   componentWillMount() {
     let colorArray = [];
-    let i = 0;
+    let i = 0; // For colors
+    let j = 100; // For greys
+    while( j > 0){
+      let color = "hsl(0, 0%, "+ j +"%)";
+      colorArray.push(color);
+      j -= 25;
+    }
     while (i < 360) {
-      colorArray.push(i);
+      let color = "hsl(" + i + ", 75%, 50%)"; 
+      colorArray.push(color);
       i += 20;
     }
     this.setState({
@@ -92,7 +99,7 @@ class App extends Component {
         />
         <Canvas
           className={classes.Canvas}
-          strokeColor={"hsl(" + this.state.actualColor + ", 75%, 50%)"}
+          strokeColor={this.state.actualColor}
           strokeWidth={this.state.actualWidth}
           undo={this.state.undo}
           click={this.undoEnabledHandler}

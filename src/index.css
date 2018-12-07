@@ -5,6 +5,7 @@
   --letters: hsl(200, 0%, 100%);
   --disabled: hsl(200, 10%, 55%);
   --shadow: hsl(200, 100%, 17.5%);
+  --color-border: hsl(200, 10%, 87.5%);
 }
 
 html {

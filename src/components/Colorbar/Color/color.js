@@ -9,7 +9,7 @@ class Color extends PureComponent {
             <button
                 onClick={this.props.click} 
                 className={classes.colorButton} 
-                style={{backgroundColor: "hsl("+ this.props.colorCode +", 75%, 50%)"}}></button>
+                style={{backgroundColor: this.props.colorCode}}></button>
         </Auxiliar>
         )    
     }

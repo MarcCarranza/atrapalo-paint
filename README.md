@@ -1,1 +1,1 @@
-# Paint para Atrapalo
+# Prueba técnica para Atrapalo

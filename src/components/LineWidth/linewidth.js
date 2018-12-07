@@ -13,8 +13,6 @@ class lineWidth extends Component {
               width={width}
               click={() => this.props.clicked(width)}>
             </Width>
-
-
           );
         })}
       </div>

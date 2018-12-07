@@ -18,12 +18,13 @@ class Canvas extends Component {
     window.addEventListener("resize", this.canvasResize());
   }
 
-  // Comprueba si ha cambiado el estado de undo/redo y lo actualiza acorde a la acción (esto debe irse)
+  // Ejecuta funciones en funcion de si se ha actualizado el objeto
   componentDidUpdate(prevProps, prevState) {
+    // Comprueba si el state es diferente al anterior y llama a enableUndoRedo()
     if (prevState !== this.state) {
       this.enableUndoRedo();
     }
-
+    // Comprueba si undo es mayor o menos que antes y llama a la función correspondiente
     if (prevProps.undo < this.props.undo) {
       this.handleUndo();
     } else if (prevProps.undo > this.props.undo) {
@@ -31,7 +32,7 @@ class Canvas extends Component {
     }
   }
 
-  // Función para que el canvas sea responsive
+  // Función para que el wrapper del canvas sea responsive (no vuelve al canvas responsive)
   canvasResize = () => {
     this.setState({
       width: window.innerWidth * 0.795,
@@ -52,11 +53,11 @@ class Canvas extends Component {
     } else if (this.state.savedLines.length > 0) {
       redo = true;
     }
-
+    // Pasa los datos a App.js para actualizar undoEnabled y redoEnabled
     this.props.click(undo, redo);
   };
 
-  // Función para organizar las acciones de deshacer
+  // Función para agrupar las acciones de deshacer
   handleUndo = () => {
     this.saveOldLines();
     this.saveOldLinesConfig();
@@ -64,18 +65,19 @@ class Canvas extends Component {
 
   // Función que guarda las lineas en otro array cuando llama a deshacer
   saveOldLines = () => {
-    let newLines = this.state.lines;
-    let lineToSave = newLines[newLines.length - 1];
-    let oldLines = this.state.savedLines;
-    oldLines.push(lineToSave);
-    newLines.splice(newLines.length - 1, 1);
+    let newLines = this.state.lines; // Copia el array de lineas 
+    let lineToSave = newLines[newLines.length - 1]; // Coge la última linea del array
+    let oldLines = this.state.savedLines; // Copia el array de lineas guardadas al deshacer
+    oldLines.push(lineToSave); // La guarda en la copia de lineas guardadas
+    newLines.splice(newLines.length - 1, 1); // Quita la ultima linea del array principal
     this.setState({
       lines: newLines,
       savedLines: oldLines
     });
   };
 
-  // Función que guarda la configuración de las lineas cuando se llama a deshacer
+  // Función que guarda la configuración de las lineas cuando se llama a deshacer 
+  // Sigue la misma lógica que la función anterior pero con linesConfig
   saveOldLinesConfig = () => {
     let newLinesConfig = this.state.linesConfig;
     let lineConfigToSave = newLinesConfig[newLinesConfig.length - 1];
@@ -88,7 +90,7 @@ class Canvas extends Component {
     });
   };
 
-  // Función para organizar las acciones de rehacer (por aquí he perdido la esperanza)
+  // Función para agrupar las acciones de rehacer (por aquí he perdido la esperanza)
   handleRedo = () => {
     this.restoreOldLines();
     this.restoreOldLinesConfig();
@@ -96,12 +98,13 @@ class Canvas extends Component {
 
   // Función que restora las lineas cuando se llama a rehacer
   restoreOldLines = () => {
-    if (this.props.undo >= 0) {
-      let newLines = this.state.lines;
-      let redoLine = this.state.savedLines[this.state.savedLines.length - 1];
-      let oldLines = this.state.savedLines;
-      newLines.push(redoLine);
-      oldLines.splice(oldLines.length - 1, 1);
+    // Comprueba que el array sea igual o más grande de 1 y undo igual o más grande que cero
+    if (this.props.undo >= 0 && this.state.savedLines.length >= 1) { 
+      let newLines = this.state.lines;  // Copia el array de lineas
+      let redoLine = this.state.savedLines[this.state.savedLines.length - 1]; // Copia la linea a restorar
+      let oldLines = this.state.savedLines; // Copia el array de lineas guardadas
+      newLines.push(redoLine); // Introduce la linea 
+      oldLines.splice(oldLines.length - 1, 1); // Borra la linea guardada en el array
       this.setState({
         lines: newLines,
         savedLines: oldLines
@@ -110,8 +113,9 @@ class Canvas extends Component {
   };
 
   // Función que restora la configuración de las lineas cuando se llama a rehacer
+  // La misma lógica que la función anterior
   restoreOldLinesConfig = () => {
-    if (this.props.undo >= 0) {
+    if (this.props.undo >= 0 && this.state.savedLinesConfig.length >= 1) {
       let newLinesConfig = this.state.linesConfig;
       let redoLineConfig = this.state.savedLinesConfig[
         this.state.savedLinesConfig.length - 1
@@ -128,12 +132,14 @@ class Canvas extends Component {
 
   // Función que se encarga de detectar si el canvas está siendo presionado y hacer un spread de las lineas
   handleMouseDown = () => {
-    // Si hay alguna linea para rehacer y se pinta de nuevo, purge it
+    // Si hay alguna linea para rehacer y se pinta en el canvas de nuevo, purge it
     if (this.state.savedLinesConfig.length > 0) {
       this.purgeSavedLines();
       this.purgeSavedLinesConfig();
     }
+    // Llama a saveLinesConfig();
     this.saveLinesConfig();
+    // Drawing a true para que lo guarde en el array de lineas
     this._drawing = true;
     this.setState({
       lines: [...this.state.lines, []]
@@ -142,9 +148,11 @@ class Canvas extends Component {
 
   // Función que se encarga de detectar el movimiento del ratón y guarda las lineas
   handleMouseMove = e => {
+    // Si no está dibujando sale de la función
     if (!this._drawing) {
       return;
     }
+    // Si está dibujando tiene en cuenta el punto inicial y final
     const stage = this.stageRef.getStage();
     const point = stage.getPointerPosition();
     const { lines } = this.state;
@@ -152,6 +160,7 @@ class Canvas extends Component {
     let lastLine = lines[lines.length - 1];
     lastLine = lastLine.concat([point.x, point.y]);
 
+    // Añade la linea al array
     lines.splice(lines.length - 1, 1, lastLine);
     this.setState({
       lines: lines.concat()

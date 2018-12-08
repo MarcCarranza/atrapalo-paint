@@ -12,10 +12,10 @@ He optado por usar React-Konva por la componentización de elementos que ofrece,
 El problema con el que me he encontrado es que para dibujar no es la opción más óptima/visual ya que usa un array de lineas rectas para formar una sola línea, que destaca mucho cuanto más gruesa es. 
 
 ###### Las funciones para dibujar, lines y linesConfig
-Para ser honesto, las funciones para dibujar lineas (handleMouseDown, handleMouseMove y handleMouseUp) las he encontrado en StackOverflow y me parecieron la solución que buscaba ya que usan componentización además de ser una buena base para empezar. 
+Para ser honesto, las funciones para dibujar lineas (handleMouseDown, handleMouseMove y handleMouseUp) las encontré en StackOverflow y me parecieron la solución que buscaba ya que usan componentización además de ser una buena base para empezar. 
 
 
-Hice linesConfig para testear las caracteristicas de cada linea (color, width) y ver si se aplicaba, con la idea de deshacarme de linesConfig y modificar lines como un array de objetos con las caracteristicas incluidas. Pero a medida que modificaba las funciones me daba cuenta que aún sabiendo lo que quería hacer se me hacía muy compleja la lectura del código, por lo que he preferido quedarme con esta solución.
+Hice linesConfig para testear las caracteristicas de cada linea (color, width) y ver si se aplicaba, con la idea de deshacerme de linesConfig y modificar lines como un array de objetos con las caracteristicas incluidas. Pero a medida que modificaba las funciones me daba cuenta que aún sabiendo lo que quería hacer se me hacía muy compleja la lectura del código, por lo que he preferido quedarme con esta solución.
 
 ## UI & UX
 

@@ -1,0 +1,343 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App renders correctly 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <App />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <Toolbar
+          clicked={
+            Object {
+              "redo": [Function],
+              "undo": [Function],
+            }
+          }
+          redoEnabled={false}
+          undoEnabled={false}
+        />,
+        <Colorbar
+          clicked={[Function]}
+          colors={
+            Array [
+              "hsl(0, 0%, 100%)",
+              "hsl(0, 0%, 75%)",
+              "hsl(0, 0%, 50%)",
+              "hsl(0, 0%, 25%)",
+              "hsl(0, 75%, 50%)",
+              "hsl(20, 75%, 50%)",
+              "hsl(40, 75%, 50%)",
+              "hsl(60, 75%, 50%)",
+              "hsl(80, 75%, 50%)",
+              "hsl(100, 75%, 50%)",
+              "hsl(120, 75%, 50%)",
+              "hsl(140, 75%, 50%)",
+              "hsl(160, 75%, 50%)",
+              "hsl(180, 75%, 50%)",
+              "hsl(200, 75%, 50%)",
+              "hsl(220, 75%, 50%)",
+              "hsl(240, 75%, 50%)",
+              "hsl(260, 75%, 50%)",
+              "hsl(280, 75%, 50%)",
+              "hsl(300, 75%, 50%)",
+              "hsl(320, 75%, 50%)",
+              "hsl(340, 75%, 50%)",
+            ]
+          }
+        />,
+        <lineWidth
+          clicked={[Function]}
+          lineWidths={
+            Array [
+              2,
+              3,
+              4,
+              5,
+            ]
+          }
+        />,
+        <Canvas
+          className="Canvas"
+          click={[Function]}
+          strokeColor="hsl(0, 75%, 0%)"
+          strokeWidth={2}
+          undo={0}
+        />,
+      ],
+      "className": "App",
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "clicked": Object {
+            "redo": [Function],
+            "undo": [Function],
+          },
+          "redoEnabled": false,
+          "undoEnabled": false,
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "clicked": [Function],
+          "colors": Array [
+            "hsl(0, 0%, 100%)",
+            "hsl(0, 0%, 75%)",
+            "hsl(0, 0%, 50%)",
+            "hsl(0, 0%, 25%)",
+            "hsl(0, 75%, 50%)",
+            "hsl(20, 75%, 50%)",
+            "hsl(40, 75%, 50%)",
+            "hsl(60, 75%, 50%)",
+            "hsl(80, 75%, 50%)",
+            "hsl(100, 75%, 50%)",
+            "hsl(120, 75%, 50%)",
+            "hsl(140, 75%, 50%)",
+            "hsl(160, 75%, 50%)",
+            "hsl(180, 75%, 50%)",
+            "hsl(200, 75%, 50%)",
+            "hsl(220, 75%, 50%)",
+            "hsl(240, 75%, 50%)",
+            "hsl(260, 75%, 50%)",
+            "hsl(280, 75%, 50%)",
+            "hsl(300, 75%, 50%)",
+            "hsl(320, 75%, 50%)",
+            "hsl(340, 75%, 50%)",
+          ],
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "clicked": [Function],
+          "lineWidths": Array [
+            2,
+            3,
+            4,
+            5,
+          ],
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "className": "Canvas",
+          "click": [Function],
+          "strokeColor": "hsl(0, 75%, 0%)",
+          "strokeWidth": 2,
+          "undo": 0,
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <Toolbar
+            clicked={
+              Object {
+                "redo": [Function],
+                "undo": [Function],
+              }
+            }
+            redoEnabled={false}
+            undoEnabled={false}
+          />,
+          <Colorbar
+            clicked={[Function]}
+            colors={
+              Array [
+                "hsl(0, 0%, 100%)",
+                "hsl(0, 0%, 75%)",
+                "hsl(0, 0%, 50%)",
+                "hsl(0, 0%, 25%)",
+                "hsl(0, 75%, 50%)",
+                "hsl(20, 75%, 50%)",
+                "hsl(40, 75%, 50%)",
+                "hsl(60, 75%, 50%)",
+                "hsl(80, 75%, 50%)",
+                "hsl(100, 75%, 50%)",
+                "hsl(120, 75%, 50%)",
+                "hsl(140, 75%, 50%)",
+                "hsl(160, 75%, 50%)",
+                "hsl(180, 75%, 50%)",
+                "hsl(200, 75%, 50%)",
+                "hsl(220, 75%, 50%)",
+                "hsl(240, 75%, 50%)",
+                "hsl(260, 75%, 50%)",
+                "hsl(280, 75%, 50%)",
+                "hsl(300, 75%, 50%)",
+                "hsl(320, 75%, 50%)",
+                "hsl(340, 75%, 50%)",
+              ]
+            }
+          />,
+          <lineWidth
+            clicked={[Function]}
+            lineWidths={
+              Array [
+                2,
+                3,
+                4,
+                5,
+              ]
+            }
+          />,
+          <Canvas
+            className="Canvas"
+            click={[Function]}
+            strokeColor="hsl(0, 75%, 0%)"
+            strokeWidth={2}
+            undo={0}
+          />,
+        ],
+        "className": "App",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "clicked": Object {
+              "redo": [Function],
+              "undo": [Function],
+            },
+            "redoEnabled": false,
+            "undoEnabled": false,
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "clicked": [Function],
+            "colors": Array [
+              "hsl(0, 0%, 100%)",
+              "hsl(0, 0%, 75%)",
+              "hsl(0, 0%, 50%)",
+              "hsl(0, 0%, 25%)",
+              "hsl(0, 75%, 50%)",
+              "hsl(20, 75%, 50%)",
+              "hsl(40, 75%, 50%)",
+              "hsl(60, 75%, 50%)",
+              "hsl(80, 75%, 50%)",
+              "hsl(100, 75%, 50%)",
+              "hsl(120, 75%, 50%)",
+              "hsl(140, 75%, 50%)",
+              "hsl(160, 75%, 50%)",
+              "hsl(180, 75%, 50%)",
+              "hsl(200, 75%, 50%)",
+              "hsl(220, 75%, 50%)",
+              "hsl(240, 75%, 50%)",
+              "hsl(260, 75%, 50%)",
+              "hsl(280, 75%, 50%)",
+              "hsl(300, 75%, 50%)",
+              "hsl(320, 75%, 50%)",
+              "hsl(340, 75%, 50%)",
+            ],
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "clicked": [Function],
+            "lineWidths": Array [
+              2,
+              3,
+              4,
+              5,
+            ],
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "className": "Canvas",
+            "click": [Function],
+            "strokeColor": "hsl(0, 75%, 0%)",
+            "strokeWidth": 2,
+            "undo": 0,
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+  },
+}
+`;

@@ -1,20 +1,13 @@
-import { shallow } from 'enzyme';
-import Canvas from '../Canvas/canvas';
+import React from 'react';
+import Adapter from 'enzyme-adapter-react-16';
+import Enzyme from "enzyme";
+import Canvas from "../Canvas/canvas";
 
-describe('Canvas', () => {
-  describe('when user clicks button', () => {
-    it ('calls correct function to save the information', () => {
-      const onButtonClickMock = jest.fn();
-      const wrapper = shallow(
-        <Canvas
-          onButtonClick={onButtonClickMock}
-        />,
-      );
-      const buttonElement = wrapper.find(Canvas); // step 1 above
-      buttonElement.simulate('click'); // step 2
-      
-      expect(onButtonClickMock).toHaveBeenCalledTimes(1); // step 3
-      expect(onButtonClickMock).toHaveBeenCalledWith(true);
-    });
+describe("Canvas", () => {
+  Enzyme.configure({ adapter: new Adapter()})
+  it("renders correctly", () => {
+    const wrapper = Enzyme.shallow(<Canvas />);
+    expect(wrapper).toMatchSnapshot();
+    // On the first run of this test, Jest will generate a snapshot file automatically.
   });
 });

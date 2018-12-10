@@ -9,7 +9,7 @@ class Canvas extends Component {
       lines: [], // Array donde guardar las lineas
       savedLines: [], // Array donde guardar las lineas cuando se llama a deshacer
       linesConfig: [], // Array donde guardar la configuracion de las lineas
-      savedLinesConfig: [], // Array donde guardar la configuracion de las lineas al deshacer
+      savedLinesConfig: [], // Array donde guardar la configuracion de las lineas al deshacernpm 
     };
   }
 

@@ -1,6 +1,13 @@
 # Simple Paint
 
-Para esta prueba me he decidido por React ya que es una plataforma consolidada, con una de las comunidades más grandes y activas, y con un gran soporte. También por la fácil componentización, organización de paquetes y la facilidad para seguir principios SOLID u otros diseños de desarrollo en Javascript.
+Para esta prueba me he decidido por React ya que es una plataforma consolidada, con una de las comunidades más grandes y activas, y con un gran soporte. También por la fácil componentización, organización de paquetes y la facilidad para seguir principios SOLID u otros diseños de desarrollo en Javascript. Para comprobar que funciona ejecuta los siguientes comandos:
+
+```
+git clone https://github.com/marccarranza/atrapalo-paint
+cd atrapalo-paint
+npm install
+npm start
+```
 
 A continuación comentaré mis decisiones en cada fase del proyecto.
 

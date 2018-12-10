@@ -88,7 +88,7 @@ class Canvas extends Component {
     });
   };
 
-  // Función para organizar las acciones de rehacer (por aquí he perdido la esperanza)
+  // Función para organizar las acciones de rehacer
   handleRedo = () => {
     this.restoreOldLines();
     this.restoreOldLinesConfig();

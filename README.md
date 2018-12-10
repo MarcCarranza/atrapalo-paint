@@ -7,6 +7,7 @@ git clone https://github.com/marccarranza/atrapalo-paint
 cd atrapalo-paint
 npm install
 npm start
+npm test
 ```
 
 A continuación comentaré mis decisiones en cada fase del proyecto.
